@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails','5.1.4'
+gem 'devise'
+gem 'twitter-bootstrap-rails'
+gem 'devise-bootstrap-views'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma', '3.9.1'
 gem 'bootstrap-sass', '~> 3.3.7'
