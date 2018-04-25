@@ -5,6 +5,7 @@ class StocksController < ApplicationController
 	    if @stock
 	 		render 'users/my_portfolio'
 	 	else
+	 		flash[:danger] = "Please enter proper ticker symbol"
 			redirect_to my_portfolio_path
 		end
 	
