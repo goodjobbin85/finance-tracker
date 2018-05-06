@@ -13,10 +13,22 @@ class UsersController < ApplicationController
   		flash.now[:danger] = "You've entered an empty search"
   	else
 		@users = User.search(params[:search_param])
+		@users = current_user.except_current_user(@users)
 		flash.now[:danger] = "No users found" if @users.blank?
 	end
 	respond_to do |format|
 		 format.js { render partial: "friends/result" }
 	end
+  end
+
+  def add_friend
+  	@friend = User.find(params[:friend])
+  	current_user.friendships.build(friend_id: @friend.id)
+  	if current_user.save
+  		flash[:success] = "Friend successfully added"
+  	else
+  		flash[:danger] = "There was an error with this friend request"
+  	end
+  	redirect_to my_friends_path
   end
 end
